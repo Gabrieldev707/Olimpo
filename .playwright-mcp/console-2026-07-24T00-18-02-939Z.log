@@ -1,0 +1,2 @@
+[      59ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8731/assets/_global/g-02.svg:0
+[      93ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8731/favicon.ico:0

@@ -11,14 +11,15 @@ A página deve reutilizar todos os vídeos existentes de Hermes e as seis imagen
 A página seguirá uma estrutura editorial híbrida:
 
 - arte estática aprovada como base das cenas narrativas;
-- vídeos existentes como manifestações e transições reproduzidas por visibilidade;
+- vídeo de hero como manifesto imediatamente após a abertura;
+- vídeos dos cinco beats como pranchas audiovisuais dentro das notas críticas;
 - copy sobre a arte no desktop;
 - arte e copy empilhadas no mobile;
 - navegação, aparato crítico e colofão coerentes com Atena e Poseidon;
 - movimento baseado apenas em `motion`, transform e opacity;
 - suporte completo a `prefers-reduced-motion`.
 
-O hero será estático e usará `ChatGPT Image Jul 28, 2026, 12_34_33 AM (1).png`. O vídeo `v-hermes-hero.mp4`, atualmente usado no hero, será preservado e reaparecerá antes do colofão como manifesto visual de encerramento.
+O hero será estático e usará `ChatGPT Image Jul 28, 2026, 12_34_33 AM (1).png`. O vídeo `v-hermes-hero.mp4`, atualmente usado no hero, será preservado e aparecerá logo depois da abertura como manifesto visual.
 
 ## Estrutura narrativa
 
@@ -30,10 +31,12 @@ O hero será estático e usará `ChatGPT Image Jul 28, 2026, 12_34_33 AM (1).png
 - Composição mobile: recorte dirigido para rosto, pétaso, caduceu e gesto; copy abaixo da imagem se o espaço vertical não comportar a sobreposição com legibilidade.
 - Assinatura de movimento: deslocamento diagonal mínimo, rastro âmbar e entrada rápida da tipografia.
 
-### 2. Manifesto — o deus das passagens
+### 2. Manifesto em vídeo — o deus das passagens
 
-- Banda editorial curta, sem imagem narrativa.
+- Vídeo: `v-hermes-hero.mp4`.
+- Reprodução automática somente quando visível, sem áudio, em loop e com `playsInline`.
 - Apresenta Hermes como deus do movimento, das fronteiras, das mensagens, das trocas e dos caminhos entre vivos e mortos.
+- Mensagem em HTML sobre o vídeo: “Entre um mundo e outro, sempre existe uma passagem.”
 - Mantém as linhas diagonais existentes de Hermes com intensidade reduzida.
 
 ### 3. Ato I — o nascimento de Hermes
@@ -46,63 +49,68 @@ O hero será estático e usará `ChatGPT Image Jul 28, 2026, 12_34_33 AM (1).png
 
 - Arte: `a_noite_de_hermes_com_o_gado.png`.
 - Tema: o rebanho conduzido à noite, as pegadas desviadas e a inteligência precoce.
-- Vídeo associado: `v-hermes-b1.mp4`.
+- A nota crítica posterior recebe `v-hermes-b1.mp4` como prancha audiovisual.
 
 ### 5. Ato III — a lira entregue a Apolo
 
 - Arte atual: `ChatGPT Image Jul 28, 2026, 12_58_44 AM (1).png`.
 - Nome canônico servido: `hermes_apresenta_a_lira_a_apolo.png`.
 - Tema: reconciliação, música, troca e transformação do conflito em aliança.
-- Vídeo associado: `v-hermes-b2.mp4`.
+- A nota crítica posterior recebe `v-hermes-b2.mp4` como prancha audiovisual.
 
 ### 6. Ato IV — Hermes e Argos
 
 - Arte: `o_herói_e_o_gigante_adormecido.png`.
 - Tema: música, sono, Io como vaca e vitória pela astúcia.
-- Vídeo associado: `v-hermes-b3.mp4`.
+- A nota crítica posterior recebe `v-hermes-b3.mp4` como prancha audiovisual.
 
 ### 7. Ato V — Hermes Psicopompo
 
 - Arte atual: `guia de passagem.png`.
 - Nome canônico servido: `guia_das_almas_para_o_portal.png`.
 - Tema: Hermes conduzindo as almas até o limite do mundo dos mortos.
-- Vídeo associado: `v-hermes-b4.mp4`.
+- A nota crítica posterior recebe `v-hermes-b4.mp4` como prancha audiovisual.
 
-### 8. Section conceitual — o deus que atravessa os mundos
+### 8. Seção conceitual — o deus que atravessa os mundos
 
 - Arte atual: `ChatGPT Image Jul 28, 2026, 12_58_44 AM (2).png`.
 - Nome canônico servido: `o_mensageiro_entre_dois_mundos.png`.
 - Tema: Olimpo, terra e submundo como territórios conectados pela passagem de Hermes.
+- A nota crítica posterior recebe `v-hermes-b5.mp4` como prancha audiovisual e abre o tema do legado.
 
 ### 9. Legado — aquele que sempre chega
 
 - Síntese dos episódios em que Hermes cruza limites, entrega mensagens ou conduz alguém a salvo.
-- Vídeo associado: `v-hermes-b5.mp4`.
 
-### 10. Manifesto visual de encerramento
-
-- Vídeo: `v-hermes-hero.mp4`.
-- Reprodução automática somente quando visível, sem áudio, em loop e com `playsInline`.
-- Mensagem: “Entre um mundo e outro, sempre existe uma passagem.”
-- O texto será HTML sobre o vídeo, nunca incorporado à mídia.
-
-### 11. Colofão
+### 10. Colofão
 
 - Fontes consolidadas, créditos e passagem para outro trono.
 - Reutiliza `Colofao`.
 
 ## Uso dos vídeos
 
-Os vídeos dos cinco beats não serão controlados por scrub. A inspeção técnica mostrou apenas um keyframe em cada arquivo, o que torna seeks frequentes suscetíveis a travamentos.
+Os vídeos dos cinco beats não serão controlados por scrub. A inspeção técnica mostrou apenas um keyframe em cada arquivo, o que torna seeks frequentes suscetíveis a travamentos. Eles entrarão nas notas pelo mesmo padrão das pranchas audiovisuais de Poseidon.
 
-Eles serão preservados sem reencodificação e usados em interlúdios ou camadas de transição:
+Eles serão preservados sem reencodificação e usados assim:
 
 - `preload="metadata"`;
-- play/pause por `IntersectionObserver`, reutilizando `useInViewVideo`;
+- carregamento quando a prancha se aproxima da viewport;
+- reprodução uma única vez ao entrar na tela;
+- pausa ao sair, mantendo o ponto alcançado;
 - apenas um vídeo em reprodução por vez;
 - `muted`, `playsInline` e sem controles;
-- frame estático ou imagem da cena quando `prefers-reduced-motion` estiver ativo;
+- pôster extraído do primeiro quadro do próprio vídeo para evitar tela preta e atender `prefers-reduced-motion`;
 - falha de carregamento não remove a copy nem impede a navegação.
+
+O mapeamento será:
+
+- nota do roubo do gado: `v-hermes-b1.mp4`;
+- nota da lira: `v-hermes-b2.mp4`;
+- nota de Argos: `v-hermes-b3.mp4`;
+- nota de Hermes Psicopompo: `v-hermes-b4.mp4`;
+- nota da travessia e do legado: `v-hermes-b5.mp4`.
+
+A nota do nascimento será textual, porque não existe um sexto beat correspondente. Os pôsteres serão quadros derivados dos próprios vídeos, não novas ilustrações.
 
 ## Arquitetura
 
@@ -128,18 +136,19 @@ Eles serão preservados sem reencodificação e usados em interlúdios ou camada
 - arte responsiva;
 - copy da cena;
 - efeitos atmosféricos;
-- interlúdio de vídeo;
-- manifesto final.
+- painel audiovisual das notas;
+- manifesto em vídeo.
 
 Serão reutilizados:
 
 - `DustCanvas`;
 - `NotaCritica`;
 - `Colofao`;
-- `useInViewVideo`;
+- `PainelVaso`, com suporte opcional a fonte MP4 única;
+- o controle de reprodução única já presente em `PainelVaso`;
 - padrões de foco, navegação e responsividade já aprovados.
 
-Não será criada uma abstração global que obrigue mudanças em Atena ou Poseidon. Os menus dessas páginas têm diferenças estruturais e refatorá-los não é necessário para Hermes.
+O comportamento padrão de `PainelVaso` continuará aceitando WebM e MP4 para Poseidon. Hermes declarará somente o MP4 disponível, sem gerar requisição 404 para um WebM inexistente. Não será criada uma abstração global que obrigue mudanças visuais em Atena ou Poseidon. Os menus dessas páginas têm diferenças estruturais e refatorá-los não é necessário para Hermes.
 
 ### Estilos
 
@@ -200,8 +209,9 @@ As referências aparecerão em notas críticas compactas e no colofão. Divergê
 
 - `src/data/gods.js`;
 - `src/components/HermesArc.jsx`;
+- `src/components/PainelVaso.jsx`, apenas para aceitar uma lista opcional de formatos;
 - `src/index.css`;
-- `assets/hermes/`, somente para nomes canônicos das imagens aprovadas;
+- `assets/hermes/`, para nomes canônicos das imagens aprovadas e pôsteres extraídos dos vídeos existentes;
 - `public/assets/hermes/`, como espelho servido pelo Vite.
 
 `src/App.jsx`, Atena e Poseidon não precisam ser alterados.
@@ -210,8 +220,8 @@ As referências aparecerão em notas críticas compactas e no colofão. Divergê
 
 1. Conferir visualmente todas as cenas e seus assets.
 2. Confirmar que as seis imagens narrativas aparecem uma vez cada.
-3. Confirmar hero estático e manifesto final com `v-hermes-hero.mp4`.
-4. Confirmar uso dos cinco vídeos de beats.
+3. Confirmar hero estático e manifesto inicial com `v-hermes-hero.mp4`.
+4. Confirmar os cinco vídeos de beats dentro das cinco notas correspondentes.
 5. Inspecionar desktop em 1440 × 1000.
 6. Inspecionar mobile em 390 × 844.
 7. Testar navegação por teclado e reduced motion.

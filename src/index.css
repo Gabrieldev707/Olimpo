@@ -48,6 +48,1138 @@
   background: #2a2320;
 }
 
+/* Luz cáustica de Poseidon — faixas de luz que ondulam como a superfície do mar. */
+@keyframes po-caustics {
+  0% {
+    transform: translate3d(-4%, -2%, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(3%, 2%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-2%, 4%, 0) scale(1.05);
+  }
+}
+
+/* Hefesto — brilho da forja que pulsa como uma respiração de brasa. */
+@keyframes forge-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.62;
+    transform: scale(1.06);
+  }
+}
+
+/* Hermes — linhas de velocidade diagonais que deslizam (o deus da travessia). */
+@keyframes hermes-streak {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 240px -240px;
+  }
+}
+
+/* Afrodite — maré rosé que respira de baixo pra cima (só transform: a opacidade
+   fica inline no componente, que varia entre forte/sutil). */
+@keyframes af-tide {
+  0%,
+  100% {
+    transform: scaleY(0.94);
+  }
+  50% {
+    transform: scaleY(1.05);
+  }
+}
+
+/* Afrodite — espuma: SVG em 200% de largura desliza metade e emenda o loop. */
+@keyframes af-wave-drift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Afrodite — deriva lenta de fundos (mármore na TESE, colunata no FECHO):
+   zoom ping-pong + pan sutil, emenda no loop. */
+@keyframes af-drift {
+  0%,
+  100% {
+    transform: scale(1.06) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.14) translate(-1.5%, -2%);
+  }
+}
+
+/* Apolo — halo solar: raios em conic-gradient girando devagar (a luz que tudo
+   ordena). Só transform: rotação contínua, sem custo de layout. */
+@keyframes ap-rays {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apolo — respiração da luz dourada que desce do alto (contraponto à maré de
+   Afrodite, que sobe de baixo). */
+@keyframes ap-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.96);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleY(1.04);
+  }
+}
+
+/* Apolo — brasas de Troia no beat de Cassandra: pontos de luz que sobem e
+   apagam, como fagulhas. */
+@keyframes ap-ember {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-40svh);
+    opacity: 0;
+  }
+}
+
+/* Atena — controles da página (← VOLTAR, PRÓXIMA CENA →, ☰ MENU, CTAs).
+   Hover dourado, transição de 200ms e foco visível, como pede o handoff.
+   Ficam em CSS (e não inline) justamente para que :hover/:focus-visible existam. */
+.at-btn {
+  border: 1px solid #a87a35;
+  background: rgba(6, 6, 5, 0.55);
+  color: #e7c179;
+  transition:
+    color 200ms ease-out,
+    background-color 200ms ease-out,
+    border-color 200ms ease-out;
+}
+.at-btn:hover {
+  border-color: #e7c179;
+  background: rgba(208, 164, 95, 0.14);
+  color: #f4e1b6;
+}
+.at-btn--solid {
+  border-color: #e7c179;
+  background: #d0a45f;
+  color: #15110a;
+}
+.at-btn--solid:hover {
+  border-color: #f3dcae;
+  background: #e7c179;
+  color: #15110a;
+}
+/* Copy sobre a arte: o véu lateral é propositalmente leve para não apagar os
+   personagens, então a legibilidade vem daqui. */
+.at-copy {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.65),
+    0 2px 24px rgba(0, 0, 0, 0.8);
+}
+.at-btn {
+  text-shadow: none;
+}
+
+.at-btn:focus-visible,
+.at-capitulo-btn:focus-visible {
+  outline: 1px solid #e7c179;
+  outline-offset: 4px;
+}
+
+/* ─────────────────────────── ARES ─────────────────────────── */
+
+/* Botão do Ares: mesma anatomia do .at-btn (contrato de navegação idêntico nas
+   três páginas), com a ferrugem no lugar do dourado profundo. */
+.ae-btn {
+  border: 1px solid #8c3a2b;
+  background: rgba(10, 7, 6, 0.55);
+  color: #c2603f;
+  transition:
+    color 200ms ease-out,
+    background-color 200ms ease-out,
+    border-color 200ms ease-out;
+}
+.ae-btn:hover {
+  border-color: #c2603f;
+  background: rgba(140, 58, 43, 0.16);
+  color: #e0906f;
+}
+.ae-btn--solid {
+  background: rgba(140, 58, 43, 0.22);
+  border-color: #c2603f;
+  color: #e8dcc4;
+}
+.ae-btn--solid:hover {
+  background: rgba(140, 58, 43, 0.36);
+}
+.ae-btn:focus-visible {
+  outline: 1px solid #c2603f;
+  outline-offset: 3px;
+}
+
+/* A copy do Ares fica sobre gravura densa e clara em alguns pontos; o mesmo
+   recurso já usado na Atena garante contraste sem escurecer mais a arte. */
+.ae-copy h1,
+.ae-copy h2,
+.ae-copy p,
+.ae-copy li,
+.ae-copy blockquote {
+  text-shadow: 0 1px 18px rgba(10, 7, 6, 0.85);
+}
+
+/* O GOLPE — identidade de movimento do Ares. A Atena se aproxima com ordem, o
+   Poseidon respira como maré; o Ares BATE e para. Um único impacto curto por
+   entrada de cena, nunca tremor contínuo, e `both` deixa a arte imóvel depois. */
+@keyframes ae-golpe {
+  0% {
+    transform: scale(1.012) translate3d(0, 0, 0);
+  }
+  18% {
+    transform: scale(1) translate3d(-0.5%, 0.35%, 0);
+  }
+  36% {
+    transform: scale(1.004) translate3d(0.35%, -0.2%, 0);
+  }
+  60% {
+    transform: scale(1) translate3d(-0.12%, 0.08%, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ae-copy *,
+  [style*="ae-golpe"] {
+    animation: none !important;
+  }
+}
+
+/* Remissão do aparato crítico: verbete sublinhado, não botão com caixa — uma
+   borda retangular seria o único componente de UI de site dentro da nota e
+   derrubaria o registro de página impressa. O filete cresce no hover/foco. */
+.at-remissao {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 260ms ease, color 200ms ease;
+}
+.at-remissao:hover,
+.at-remissao:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* Índice vertical dos tronos: no Canva os itens têm ~55px de passo. Manter esse
+   ritmo também entrega o alvo clicável de 48px que o handoff exige. Em telas
+   baixas o passo comprime para os doze tronos continuarem cabendo. */
+.at-rail-item {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+}
+@media (max-height: 800px) {
+  .at-rail-item {
+    min-height: 36px;
+  }
+}
+
+/* Marcos de capítulo do Manifesto: o rótulo acende em dourado no hover/foco. */
+.at-capitulo-btn:hover .at-capitulo,
+.at-capitulo-btn:focus-visible .at-capitulo {
+  color: #e7c179;
+}
+.at-capitulo {
+  transition: color 200ms ease-out;
+}
+
+/* ───────────────────────── ATENA ─────────────────────────
+   As seis cenas são artes estáticas aprovadas (base limpa). A vida vem sempre de
+   overlay sobre a imagem — nunca de deformação da arte. Só transform/opacity,
+   para tudo rodar no compositor. Cada cena usa um conjunto próprio de efeitos. */
+
+/* Cena 01 — tempestade atrás da Acrópole: o rasgo de luz nas nuvens respira. */
+@keyframes at-storm {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.42;
+    transform: scale(1.08);
+  }
+}
+
+/* Cena 01 — reflexo especular que percorre lança, elmo e escudo (metal). */
+@keyframes at-glint {
+  0% {
+    transform: translateX(-130%) rotate(14deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.5;
+  }
+  38% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(130%) rotate(14deg);
+    opacity: 0;
+  }
+}
+
+/* Cena 02 — névoa baixa que deriva de lado, lentíssima (contemplativa). */
+@keyframes at-fog {
+  0% {
+    transform: translate3d(-6%, 0, 0) scale(1.1);
+    opacity: 0.22;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate3d(6%, -2%, 0) scale(1.16);
+    opacity: 0.22;
+  }
+}
+
+/* Cena 02 — a coruja é o elemento de transição: um halo que pulsa devagar. */
+@keyframes at-owl {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+}
+
+/* Cena 03 — a rachadura luminosa que abre a cabeça de Zeus. */
+@keyframes at-crack {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scaleY(0.94);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleY(1.06);
+  }
+}
+
+/* Cena 03 — impacto único de Hefesto: curto, uma vez só, nunca tremor contínuo. */
+@keyframes at-impact {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  18% {
+    transform: translate3d(-0.5%, 0.7%, 0);
+  }
+  38% {
+    transform: translate3d(0.45%, -0.5%, 0);
+  }
+  62% {
+    transform: translate3d(-0.25%, 0.3%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Cena 03 — fagulhas/detritos do impacto, caindo devagar. */
+@keyframes at-debris {
+  0% {
+    transform: translateY(-8%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+}
+
+/* Cena 04 — mar e nuvens em deriva horizontal sutil (nunca tempestade caótica). */
+@keyframes at-sea {
+  0%,
+  100% {
+    transform: translate3d(-2.5%, 0, 0) scale(1.06);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate3d(2.5%, -1%, 0) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* Cena 04 — o tridente atinge a rocha: impacto pontual, quase todo o ciclo apagado. */
+@keyframes at-hit {
+  0%,
+  72%,
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  76% {
+    opacity: 0.55;
+    transform: scale(1.04);
+  }
+  88% {
+    opacity: 0.12;
+    transform: scale(1.1);
+  }
+}
+
+/* Cena 04 — a oliveira recebendo luz quente: respiração lenta, sem estourar. */
+@keyframes at-warm {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.36;
+    transform: scale(1.06);
+  }
+}
+
+/* Cena 05 — os fios vibram: amplitude mínima, período longo. */
+@keyframes at-thread {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scaleY(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate3d(0.6%, -0.4%, 0) scaleY(1.02);
+    opacity: 0.5;
+  }
+}
+
+/* Cena 05 — as teias avançam devagar sobre a cena, sem cobrir a tapeçaria. */
+@keyframes at-web {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 0.12;
+  }
+  100% {
+    transform: scale(1.14) translate3d(-2%, 1.5%, 0);
+    opacity: 0.3;
+  }
+}
+
+/* Cena 06 — o reflexo percorre o escudo polido. Controlado: sem glow estourado. */
+@keyframes at-mirror {
+  0% {
+    transform: translateX(-70%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45;
+  }
+  55% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateX(70%);
+    opacity: 0;
+  }
+}
+
+/* Cena 02 → 03 — a linha dourada que abre a próxima cena. */
+@keyframes at-line {
+  0%,
+  100% {
+    transform: scaleX(0.3);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 0.9;
+  }
+}
+
+/* ───────────────────────── POSEIDON ─────────────────────────
+   As sete cenas são artes estáticas aprovadas (base limpa). Nada é redesenhado:
+   a vida vem sempre de overlay sobre a imagem, nunca de deformação. Só
+   transform/opacity, para tudo rodar no compositor.
+
+   A gramática de movimento é o oposto da Atena. Lá tudo é estável e geométrico;
+   aqui tudo tem maré: o SWELL é contínuo, os períodos são longos e propositalmente
+   dessincronizados entre cenas, e nenhum efeito começa ou termina "no lugar". */
+
+/* Controles da página (← VOLTAR, PRÓXIMA CENA →, ☰ MENU). O handoff pede alvo de
+   48px, transição de 200ms e "hover dourado luminoso, sem glow exagerado" — daí
+   não haver box-shadow nenhum aqui. Em CSS, e não inline, para :hover e
+   :focus-visible existirem de verdade. */
+.po-btn {
+  border: 1px solid #a87a35;
+  background: rgba(5, 8, 10, 0.55);
+  color: #e7c179;
+  text-shadow: none;
+  transition:
+    color 200ms ease-out,
+    background-color 200ms ease-out,
+    border-color 200ms ease-out;
+}
+.po-btn:hover {
+  border-color: #e7c179;
+  background: rgba(208, 164, 95, 0.14);
+  color: #f4e1b6;
+}
+.po-btn:focus-visible {
+  outline: 1px solid #e7c179;
+  outline-offset: 4px;
+}
+
+/* Copy sobre a arte: o véu lateral é propositalmente leve para não apagar os
+   personagens que o contrato manda preservar, então a legibilidade vem daqui. */
+.po-copy {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.7),
+    0 2px 24px rgba(0, 0, 0, 0.82);
+}
+
+/* O kicker é o bloco mais frágil: pequeno, fino e com muito tracking, e nas cenas
+   de copy inferior ele cai justamente sobre o céu ocre claro (04 e 06), onde o véu
+   ainda está fraco. Ganha um halo escuro próprio em vez de engrossar o véu — que
+   apagaria a oliveira e as muralhas. */
+.po-kicker {
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.95),
+    0 0 12px rgba(0, 0, 0, 0.92),
+    0 0 26px rgba(0, 0, 0, 0.72);
+}
+
+/* Índice vertical dos tronos: o passo de 48px entrega o alvo clicável que o
+   handoff exige. Em telas baixas comprime para os doze continuarem cabendo. */
+.po-rail-item {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+}
+@media (max-height: 800px) {
+  .po-rail-item {
+    min-height: 36px;
+  }
+}
+
+/* Maré subindo e descendo na base do quadro. */
+@keyframes po-tide {
+  0% {
+    opacity: 0.5;
+    transform: translate3d(0, 6%, 0) scaleY(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, -2%, 0) scaleY(1.06);
+  }
+}
+
+/* SWELL — a assinatura da página: a arte inteira respira, como se estivesse
+   apoiada sobre água. Amplitude minúscula de propósito; é para ser sentido, não
+   percebido. Nunca deforma (só translate + scale uniforme). */
+@keyframes po-swell {
+  0% {
+    transform: translate3d(0, 0.5%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(0, -0.7%, 0) scale(1.012);
+  }
+}
+
+/* Reflexo controlado percorrendo o tridente (cenas 01 e 07). */
+@keyframes po-glint {
+  0%,
+  62% {
+    opacity: 0;
+    transform: translate3d(0, 120%, 0);
+  }
+  74% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -120%, 0);
+  }
+}
+
+/* Constelações respirando na cúpula da Cena 02. */
+@keyframes po-constelacao {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+/* Luz do impacto do tridente (Cena 03): pulsa de forma contida, sem estourar. */
+@keyframes po-impacto-luz {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: scale(0.97);
+  }
+  46% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* O mar se erguendo do lado esquerdo da Cena 03. */
+@keyframes po-swellfx {
+  0% {
+    opacity: 0.45;
+    transform: translate3d(-2%, 3%, 0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translate3d(1%, -3%, 0);
+  }
+}
+
+/* Rachaduras avançando pelo solo, à direita da Cena 03. */
+@keyframes po-fenda {
+  0% {
+    opacity: 0.3;
+    transform: translate3d(-3%, 0, 0);
+  }
+  100% {
+    opacity: 0.75;
+    transform: translate3d(3%, 0, 0);
+  }
+}
+
+/* Jato de água salgada da Cena 04: sobe, e recua na volta da timeline. */
+@keyframes po-jato {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translate3d(0, 6%, 0) scaleY(0.9);
+  }
+  38% {
+    opacity: 0.9;
+    transform: translate3d(0, -3%, 0) scaleY(1.08);
+  }
+}
+
+/* Luz quente que permanece no lado da Atena (Cena 04). */
+@keyframes po-quente {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Folhas da oliveira, movimento mínimo (Cena 04). */
+@keyframes po-folhas {
+  0% {
+    opacity: 0.5;
+    transform: translate3d(-0.6%, 0, 0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translate3d(0.6%, -0.8%, 0);
+  }
+}
+
+/* Relâmpago curto e espaçado (cenas 05 e 06). Nunca estroboscópico: dois lampejos
+   e um silêncio longo. */
+@keyframes po-relampago {
+  0%,
+  86%,
+  100% {
+    opacity: 0;
+  }
+  88% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.15;
+  }
+  92% {
+    opacity: 0.7;
+  }
+  96% {
+    opacity: 0;
+  }
+}
+
+/* A onda colossal da Cena 05: cresce e recua, mas nunca quebra. */
+@keyframes po-onda {
+  0% {
+    opacity: 0.45;
+    transform: translate3d(2%, 4%, 0) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-1%, -3%, 0) scale(1.05);
+  }
+}
+
+/* Espuma revelando o tridente por um instante (Cena 05). */
+@keyframes po-espuma {
+  0%,
+  70%,
+  100% {
+    opacity: 0.1;
+  }
+  84% {
+    opacity: 0.9;
+  }
+}
+
+/* A água crescendo diante das muralhas de Troia (Cena 06). */
+@keyframes po-muralha {
+  0% {
+    opacity: 0.4;
+    transform: translate3d(0, 8%, 0) scaleY(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, -2%, 0) scaleY(1.08);
+  }
+}
+
+/* O monstro marinho emergindo e avançando (Cena 06). */
+@keyframes po-monstro {
+  0% {
+    opacity: 0.3;
+    transform: translate3d(4%, 6%, 0) scale(0.96);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translate3d(-2%, -2%, 0) scale(1.06);
+  }
+}
+
+/* Feixes de luz atravessando a tempestade do epílogo — o efeito mais lento
+   da página inteira. */
+@keyframes po-feixes {
+  0% {
+    opacity: 0.35;
+    transform: translate3d(-3%, 0, 0);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translate3d(3%, 0, 0);
+  }
+}
+
+/* ─────────────────────────── HERMES ─────────────────────────── */
+
+/* O âmbar de Hermes não desenha uma moldura: ele aparece como sinal de rota,
+   filete e foco. Os botões preservam a mesma anatomia editorial das páginas
+   de Atena e Poseidon, mas ganham um preto mais quente. */
+.hm-btn {
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #9c6a24;
+  background: rgba(8, 7, 6, 0.62);
+  padding: 0.75rem 1.4rem;
+  color: #f0c674;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-shadow: none;
+  transition:
+    color 200ms ease-out,
+    background-color 200ms ease-out,
+    border-color 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.hm-btn:hover {
+  border-color: #f0c674;
+  background: rgba(217, 164, 65, 0.14);
+  color: #fff0c9;
+  transform: translateY(-1px);
+}
+
+.hm-btn--solid {
+  border-color: #f0c674;
+  background: #d9a441;
+  color: #140f08;
+}
+
+.hm-btn--solid:hover {
+  border-color: #fff0c9;
+  background: #f0c674;
+  color: #140f08;
+}
+
+.hm-copy {
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.94),
+    0 2px 24px rgba(0, 0, 0, 0.84);
+}
+
+.hm-rail-item {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+}
+
+@media (max-height: 800px) {
+  .hm-rail-item {
+    min-height: 36px;
+  }
+}
+
+.hm-btn:focus-visible,
+.hm-menu-trigger:focus-visible {
+  outline: 1px solid #f0c674;
+  outline-offset: 4px;
+}
+
+.hm-rastro {
+  animation: hermes-streak 8s linear infinite;
+}
+
+.hm-lua {
+  animation: hm-lua 10s ease-in-out infinite alternate;
+}
+
+.hm-limiar {
+  animation: hm-limiar 12s ease-in-out infinite alternate;
+}
+
+.hm-hero-art {
+  object-position: 61% 44%;
+}
+
+.hm-scene-art {
+  object-position: var(--hm-focus-mobile);
+}
+
+@media (min-width: 768px) {
+  .hm-hero-art {
+    object-position: 58% 46%;
+  }
+
+  .hm-scene-art {
+    object-position: var(--hm-focus-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hm-hero-art {
+    object-position: 54% 48%;
+  }
+
+  .hm-scene-art {
+    object-position: var(--hm-focus-desktop);
+  }
+}
+
+@keyframes hm-lua {
+  0% {
+    opacity: 0.48;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes hm-limiar {
+  0% {
+    opacity: 0.45;
+    transform: translate3d(-8%, 0, 0) scaleX(0.82);
+  }
+  100% {
+    opacity: 0.92;
+    transform: translate3d(8%, 0, 0) scaleX(1.15);
+  }
+}
+
+/* ─────────────────────────── APOLO ─────────────────────────── */
+
+/* A interface de Apolo é régua e claridade: linhas retas, ouro pálido e um
+   eixo vertical persistente. A arte continua sendo a superfície dominante;
+   estes sinais existem para organizar a leitura, não para competir com ela. */
+.ap-btn {
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #a87424;
+  background: rgba(7, 7, 6, 0.64);
+  padding: 0.75rem 1.4rem;
+  color: #e5c687;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-shadow: none;
+  transition:
+    color 200ms ease-out,
+    background-color 200ms ease-out,
+    border-color 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.ap-btn:hover {
+  border-color: #f4e2b0;
+  background: rgba(229, 198, 135, 0.14);
+  color: #fff7df;
+  transform: translateY(-1px);
+}
+
+.ap-btn--solid {
+  border-color: #f4e2b0;
+  background: #e5c687;
+  color: #151109;
+}
+
+.ap-btn--solid:hover {
+  border-color: #fff7df;
+  background: #f4e2b0;
+  color: #151109;
+}
+
+.ap-btn:focus-visible {
+  outline: 1px solid #f4e2b0;
+  outline-offset: 4px;
+}
+
+.ap-copy {
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.96),
+    0 2px 26px rgba(0, 0, 0, 0.9);
+}
+
+.ap-rail-item {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+}
+
+.ap-hero-art {
+  object-position: var(--ap-focus-mobile);
+}
+
+.ap-manifesto-art {
+  object-position: var(--ap-manifesto-focus-mobile);
+}
+
+.ap-scene-art {
+  object-position: var(--ap-focus-mobile);
+}
+
+.ap-halo {
+  opacity: 0.07;
+  background: repeating-conic-gradient(
+    from 0deg,
+    #f4e2b0 0deg 1deg,
+    transparent 1deg 11deg
+  );
+  -webkit-mask-image: radial-gradient(circle, transparent 0 38%, black 49%, transparent 72%);
+  mask-image: radial-gradient(circle, transparent 0 38%, black 49%, transparent 72%);
+  animation: ap-halo-giro 140s linear infinite;
+}
+
+.ap-halo--reverse {
+  opacity: 0.045;
+  animation-direction: reverse;
+  animation-duration: 180s;
+}
+
+.ap-eixo {
+  opacity: 0.42;
+  background: linear-gradient(transparent, #f4e2b0, transparent);
+  box-shadow: 0 0 32px rgba(229, 198, 135, 0.45);
+  animation: ap-eixo-luz 7s ease-in-out infinite alternate;
+}
+
+.ap-cena-sol {
+  opacity: 0.32;
+  background: radial-gradient(circle, rgba(244, 226, 176, 0.62), rgba(229, 198, 135, 0.09) 45%, transparent 70%);
+  mix-blend-mode: screen;
+  filter: blur(2px);
+  animation: ap-sol-respira 8s ease-in-out infinite alternate;
+}
+
+.ap-flecha {
+  opacity: 0.72;
+  background: linear-gradient(90deg, transparent, #f4e2b0 30%, #f4e2b0 92%, transparent);
+  box-shadow: 0 0 14px rgba(244, 226, 176, 0.8);
+  animation: ap-flecha-luz 6s ease-in-out infinite;
+}
+
+.ap-folhas {
+  opacity: 0.2;
+  background-image:
+    radial-gradient(ellipse at 18% 22%, #e5c687 0 1px, transparent 2px),
+    radial-gradient(ellipse at 76% 38%, #f4e2b0 0 1px, transparent 2px),
+    radial-gradient(ellipse at 63% 76%, #e5c687 0 1px, transparent 2px);
+  background-size: 84px 108px, 112px 86px, 96px 126px;
+  mix-blend-mode: screen;
+  animation: ap-folhas-deriva 16s ease-in-out infinite alternate;
+}
+
+.ap-corda {
+  background: linear-gradient(transparent, #f4e2b0, transparent);
+  box-shadow: 0 0 5px rgba(229, 198, 135, 0.45);
+  animation: ap-corda-vibra 4.6s ease-in-out infinite alternate;
+}
+
+.ap-corda:nth-child(2),
+.ap-corda:nth-child(4) {
+  animation-delay: -2.3s;
+}
+
+.ap-oraculo {
+  opacity: 0.46;
+  background: linear-gradient(90deg, transparent, rgba(244, 226, 176, 0.36), transparent);
+  mix-blend-mode: screen;
+  filter: blur(20px);
+  animation: ap-oraculo-pulso 8s ease-in-out infinite alternate;
+}
+
+.ap-oraculo--static {
+  animation: none;
+}
+
+@media (max-height: 800px) {
+  .ap-rail-item {
+    min-height: 36px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ap-hero-art {
+    object-position: var(--ap-focus-tablet);
+  }
+
+  .ap-manifesto-art {
+    object-position: var(--ap-manifesto-focus-tablet);
+  }
+
+  .ap-scene-art {
+    object-position: var(--ap-focus-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ap-hero-art {
+    object-position: var(--ap-focus-desktop);
+  }
+
+  .ap-manifesto-art {
+    object-position: var(--ap-manifesto-focus-desktop);
+  }
+
+  .ap-scene-art {
+    object-position: var(--ap-focus-desktop);
+  }
+}
+
+@keyframes ap-halo-giro {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+@keyframes ap-eixo-luz {
+  from {
+    opacity: 0.22;
+    transform: translateX(-50%) scaleY(0.82);
+  }
+  to {
+    opacity: 0.58;
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+@keyframes ap-sol-respira {
+  from {
+    opacity: 0.2;
+    transform: translateX(-50%) scale(0.94);
+  }
+  to {
+    opacity: 0.42;
+    transform: translateX(-50%) scale(1.07);
+  }
+}
+
+@keyframes ap-flecha-luz {
+  0%,
+  72%,
+  100% {
+    opacity: 0.18;
+    transform: scaleX(0.22);
+  }
+  86% {
+    opacity: 0.82;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ap-folhas-deriva {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+    transform: translate3d(-0.6%, 0.7%, 0);
+  }
+  to {
+    background-position: 18px -26px, -20px -12px, 12px -34px;
+    transform: translate3d(0.8%, -0.7%, 0);
+  }
+}
+
+@keyframes ap-corda-vibra {
+  from {
+    opacity: 0.16;
+    transform: translateX(-1px);
+  }
+  to {
+    opacity: 0.58;
+    transform: translateX(1px);
+  }
+}
+
+@keyframes ap-oraculo-pulso {
+  from {
+    opacity: 0.25;
+    transform: translateX(-50%) scaleX(0.72);
+  }
+  to {
+    opacity: 0.62;
+    transform: translateX(-50%) scaleX(1.22);
+  }
+}
+
 @keyframes olimpo-pulse-line {
   0%,
   100% {

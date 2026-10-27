@@ -2,3 +2,11 @@
 .env.local
 assets/_inbox/
 .env.example
+
+# Pastas de ferramentas locais (IA/automação)
+.codex/
+.claude/
+.playwright-mcp/
+node_modules/
+dist/
+scratchpad/
